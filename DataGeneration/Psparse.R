@@ -10,6 +10,9 @@ rm(list = ls(all.names = TRUE))
 current_working_dir <- dirname(rstudioapi::getActiveDocumentContext()$path)
 setwd(current_working_dir)
 getwd()
+
+dir.create("DATA-R") # Directory to save the data
+
 # setting the number of cores 
 library(doParallel)
 

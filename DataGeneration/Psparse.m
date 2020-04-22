@@ -5,6 +5,8 @@
 clear
 sc = parallel.pool.Constant(RandStream('Threefry'));
 
+mkdir DATA-Matlab
+
 % Define factors and levels
 VAFx = [.80 .95 1];     % Variance accounted for X
 p_sparse = [0 .5 .8];   % proportion of sparsity in the data
