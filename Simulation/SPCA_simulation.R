@@ -30,15 +30,12 @@ registerDoParallel(c1)
 DataDir = "S:/DataGeneration"
 
 mainDir1 = "../../DataGeneration/Wsparse/DATA-R"
-#ResultDir1 = "../Simulation/SPCA/Results/SPCA1/"
 
 # Setting directory -P and W sparse 
 mainDir2 = "../../DataGeneration/PandWsparse/DATA-R"
-#ResultDir2 = "../Simulation/SPCA/Results/SPCA2/"
 
 # Setting directory - P sparse - Cross data
 mainDir3 = "../../DataGeneration/Psparse/DATA-R"
-#ResultDir3 = "../Simulation/SPCA/Results/SPCA3/"
 
 
 load(paste0(mainDir1,"/Info_simulaiton.RData"))
@@ -103,7 +100,6 @@ Simulation = foreach(i=1:Ndatasets,.packages = c("elasticnet","combinat","MASS")
           
           ErrorScores1 = (norm((Out1$Z-Z1),type = "F")/norm(Out1$Z,type = "F"))^2
           ErrorScores2 = (norm((Out2$Z-Z2),type = "F")/norm(Out2$Z,type = "F"))^2
-          #ErrorScores3 = (norm((Out3$Z-Z3),type = "F")/norm(Out3$Z,type = "F"))^2
           CorrelationZ3 = correlation(Out3$Z, Z3) 
           
           ZeroInd1 = which(as.vector(Out1$W)==0) # W sparse 
@@ -147,13 +143,7 @@ Simulation = foreach(i=1:Ndatasets,.packages = c("elasticnet","combinat","MASS")
           Svar2 = 1 - (norm((Out2$X-Xs2),type = "F")/norm(Out2$X,type = "F"))^2
           Svar3 = 1 - (norm((Out3$X-Xs3),type = "F")/norm(Out3$X,type = "F"))^2
           
-          # saving results
-          # results1 = list(P = P1, W = W1, Z = Z1, PEV =PEV1)
-          # results2 = list(P = P2, W = W2, Z = Z2, PEV =PEV2)
-          # results3 = list(P = P3, W = W3, Z = Z3, PEV =PEV3)
-          # save(results1, file = paste0(ResultDir1,"Results",i,".RData"))
-          # save(results2, file = paste0(ResultDir2,"Results",i,".RData"))
-          # save(results3, file = paste0(ResultDir3,"Results",i,".RData"))
+          
           
           # Saving performance #
           return(list(ErrorLW1 = ErrorLW1, ErrorScores1 = ErrorScores1, MR01 = MR01,Svar1 = Svar1,
@@ -170,12 +160,10 @@ stopCluster(c1)
 
 ErrorLW1 = as.numeric(unlist(Simulation[,"ErrorLW1"]))
 ErrorLW2 = as.numeric(unlist(Simulation[,"ErrorLW2"]))
-#ErrorLW3 = as.numeric(unlist(Simulation[,"ErrorLW3"]))
 Correlation3 = as.numeric(unlist(Simulation[,"Correlation3"]))
 
 ErrorScores1 = as.numeric(unlist(Simulation[,"ErrorScores1"]))
 ErrorScores2 = as.numeric(unlist(Simulation[,"ErrorScores2"]))
-#ErrorScores3 = as.numeric(unlist(Simulation[,"ErrorScores3"]))
 CorrelationZ3 = as.numeric(unlist(Simulation[,"CorrelationZ3"]))
 
 MR01 = as.numeric(unlist(Simulation[,"MR01"]))
