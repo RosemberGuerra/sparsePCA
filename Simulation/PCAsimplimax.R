@@ -1,10 +1,10 @@
 PCAsimplimax <- function(X,k,ps){
   # X is the data matrix
+  # k is the number of component loadings
   # ps is the proportion of sparsity of the loadings
   
   ## computing de loadings ##
 
-  # X = scale(X, center = TRUE, scale = FALSE) #
 
   Xpca =  svd(X, nv = k)
   Kloadings = Xpca$v%*%diag(Xpca$d[1:k])
@@ -22,9 +22,7 @@ PCAsimplimax <- function(X,k,ps){
       x[abs(x) < t] = 0
       return(x)
     })
-    #rloadings =  apply(rloadings, 2, function(x){x/norm(x,"2")})
+   
   }
-
-  
   return(list(P = rloadings, Z = Z))
 }
