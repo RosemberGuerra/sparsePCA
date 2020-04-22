@@ -1,7 +1,4 @@
 # Sparse PCA: model comparison
-This repository containt R and Matlab codes usued for the simulation and emperical study in the paper "A guide for sparse PCA: a model comprison".
 
-## Data Generation
-## Simulaiton study
-## Empirical study
-## Plots
+This github repository contains all matlab, R code, and functions that support the "A guide for sparse PCA: a model comprison" manuscript. The repository contains a DataGeneration, Simulation, and Application branches.
+
