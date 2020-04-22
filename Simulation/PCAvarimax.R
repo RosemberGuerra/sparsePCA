@@ -1,11 +1,9 @@
 PCAvarimax <- function(X,k,ps){
   # X is the data matrix
+  # k the number of component loadings
   # ps is the proportion of sparsity of the loadings
-  ##---
   
-  ## computing de loadings ##
-
-  # X = scale(X, center = TRUE, scale = FALSE) #
+  ## computing de loadings ##  
 
   Xpca =  svd(X, nv = k)
   Kloadings = Xpca$v%*%diag(Xpca$d[1:k])
@@ -23,7 +21,7 @@ PCAvarimax <- function(X,k,ps){
       x[abs(x) < t] = 0
       return(x)
     })
-    #rloadings =  apply(rloadings, 2, function(x){x/norm(x,"2")})
+    
     
   }
   
