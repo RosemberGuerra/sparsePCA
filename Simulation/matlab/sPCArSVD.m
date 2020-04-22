@@ -21,10 +21,6 @@ rng('default'); % For random number generation
 eps = 1e-7; % 
 MaxIter = 1000;
 
-% V = []; % Component loadings 
-% U = []; % Component scores
-
-% X = X-repmat((mean(X,1)),n,1); 
 dif = 1;
 iter = 0;
 % 1. SVD
