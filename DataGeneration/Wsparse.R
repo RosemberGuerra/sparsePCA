@@ -18,6 +18,8 @@ no_cores <- detectCores()
 c1 <- makePSOCKcluster(floor( no_cores*.8))
 registerDoParallel(c1)
 
+dir.create("DATA-R") # Directory to save the data
+
 # sparse PCA data simulation #
 
 set.seed(2019)
@@ -80,8 +82,9 @@ results_sim1_data1 <- foreach(i=1:nrow(design_matrix_replication),
                                 
                                 # 6. 
                                 Z =  X%*%W # Component scores
-                                P = t(X)%*%ginv(t(Z)) 
-                                
+                                #P = t(X)%*%ginv(t(Z)) 
+                                Psvd = svd((t(X)%*%X)%*%W)
+                                P = Psvd$u%*%t(Psvd$v)
                                 # 7. 
                                 Xtrue =  Z%*%t(P)
                                 

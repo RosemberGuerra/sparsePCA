@@ -2,8 +2,11 @@
 % Rosember Guerra %
 % 15-09-2019 %
 % edited: 11-10-2019
+
 clear
 sc = parallel.pool.Constant(RandStream('Threefry'));
+
+mkdir DATA-Matlab
 
 % Define factors and levels
 VAFx = [.80 .95 1];     % Variance accounted for X
