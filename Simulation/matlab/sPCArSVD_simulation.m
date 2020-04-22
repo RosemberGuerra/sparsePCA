@@ -1,4 +1,4 @@
-%% Simulation sPCArSVD parfor%%
+%% Simulation sPCArSVD parfor %%
 % Rosember Guerra %
 % Initial version: 18-09-2019 
 % Edited version: 08-10-2019
@@ -14,15 +14,12 @@ clc
 
 % setting directory-P sparse
 DataDir1 = '../../DataGeneration/Psparse/DATA-Matlab/';
-% ResultsDir1 = 'Results/sPCArSVD1/';
 
 % Setting directories- P and W sparse %
 DataDir2 = '../../DataGeneration/PandWsparse/DATA-Matlab/';
-% ResultsDir2 = 'Results/sPCArSVD2/';
 
 % Setting directories- Cross data %
 DataDir3 = '../../DataGeneration/Wsparse/DATA-Matlab/';
-% ResultsDir3 = 'Results/sPCArSVD3/';
 
 load([DataDir1,'Info_simulation.mat'])
 %% Performance measure variables %%
@@ -53,26 +50,13 @@ parfor i=1:Ndatasets
     Out3 = load([DataDir3,sprintf('Wsparse%d.mat',i)]);     % W sparse
     
     % 1.
-%     DATA1 = Out1.Xnew;
-%     [I1, ~] = size(DATA1); 
-%     DATA1 = DATA1-repmat((mean(DATA1,1)),I1,1); 
     [P1,T1] = sPCArSVD(Out1.Xnew,Out1.R,Out1.propsparse);
     % 2.
-%     DATA2 = Out2.Xnew;
-%     [I2, ~] = size(DATA2); 
-%     DATA2 = DATA2-repmat((mean(DATA2,1)),I2,1); 
     [P2,T2] = sPCArSVD(Out2.Xnew,Out2.R,Out2.propsparse);
     % 3.
-%     DATA3 = Out3.Xnew;
-%     [I3, ~] = size(DATA3); 
-%     DATA3 = DATA3-repmat((mean(DATA3,1)),I3,1); 
     [P3,T3] = sPCArSVD(Out3.Xnew,Out3.R,Out3.propsparse);
     
-    % Saving the results %
-%     parsave(sprintf([ResultsDir1,'results%d.mat'],i),P1,T1);
-%     parsave(sprintf([ResultsDir2,'results%d.mat'],i),P2,T2);
-%     parsave(sprintf([ResultsDir3,'results%d.mat'],i),P3,T3);
-%     
+      
     % Performance Measurements %%
     % Relative error %
     [ErrorLW1(i),perm1,s1] = ErrorRelative(Out1.P ,P1 );
@@ -89,7 +73,6 @@ parfor i=1:Ndatasets
     
     ErrorScores1(i) = (norm(Out1.T-T1,'fro')/norm(Out1.T,'fro'))^2;
     ErrorScores2(i) = (norm(Out2.T-T2,'fro')/norm(Out2.T,'fro'))^2;
-    %ErrorScores3(i) = (norm(Out3.T-T3,'fro')/norm(Out3.T,'fro'))^2;
     Correlation3(i) = correlation(Out3.W, P3);
     CorrelationZ3(i) = correlation(Out3.T, T3);
     
@@ -113,8 +96,6 @@ parfor i=1:Ndatasets
         MR02(i) =1- sum(wz2==0)/length(ZeroInd2);
     end
   
-    
-    
     
     % Sparse Explained variance 2 %
     Xs1 = T1*P1';
@@ -140,8 +121,3 @@ Table2 = table(ErrorLW1,ErrorScores1,MR01,Svar1,...
 DatasPCArSVD = [table(Methodology,p_sparse2) Table Table2];
 writetable(DatasPCArSVD,'JointDatasPCArSVD.txt','Delimiter',',') 
 save('ResultsSPCArSVD.mat')
-
-%% Auxiliar functions %%
-% function parsave(fname,P,T)
-% save(fname,'P','T');
-% end
