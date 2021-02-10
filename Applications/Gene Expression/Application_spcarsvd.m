@@ -5,6 +5,12 @@
 % Author: Rosember Guerra %
 % created: 16-11-2020 
 % Edited: 
+
+% This application was implemented in a supercomputer with the following 
+% characteristics:
+% OS version: Windows 2012 R2
+% CPU: 24 Core 2.60 GHz Intel Xeon(R)
+% Memory: 523780 MB
 %%
 clear
 close
