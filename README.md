@@ -1,6 +1,8 @@
 # A guide for sparse PCA: model comparison and applications
 
-This GitHub repository contains all Matlab codes, R codes, and functions that support the "A guide for sparse PCA: model comparison and applications" manuscript. The repository includes DataGeneration, Simulation, and Application files.
+
+This GitHub repository contains all Matlab codes, R codes, and functions that support the "A guide for sparse PCA: model comparison and applications" (DOI
+https://doi.org/10.1007/s11336-021-09773-2). The repository includes DataGeneration, Simulation, and Application files.
 
 ## Simulation: 
 GP and pathSPCA functions require additional functions that are freely available. 
